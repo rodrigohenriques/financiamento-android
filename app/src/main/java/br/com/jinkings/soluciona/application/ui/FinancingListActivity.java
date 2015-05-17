@@ -1,4 +1,4 @@
-package br.com.jinkings.financing.application.ui;
+package br.com.jinkings.soluciona.application.ui;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

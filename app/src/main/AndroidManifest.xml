@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".application.ui.FinancingListActivity"
+            android:name="br.com.jinkings.soluciona.application.ui.FinancingListActivity"
             android:label="@string/title_activity_financing_list" >
         </activity>
     </application>
