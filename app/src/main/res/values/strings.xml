@@ -4,4 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_financing_list">FinancingListActivity</string>
+    <string name="hint_usuario">Usuário</string>
+    <string name="hint_senha">Senha</string>
+    <string name="button_cadastrar">Cadastre-se</string>
+    <string name="button_entrar">Entrar</string>
 </resources>
