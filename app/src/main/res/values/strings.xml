@@ -4,13 +4,15 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_financing_list">FinancingListActivity</string>
-    <string name="hint_username">Usuário</string>
+    <string name="hint_email">Email</string>
     <string name="hint_password">Senha</string>
     <string name="button_cadastrar">Cadastre-se</string>
-    <string name="login_button_singin">Entrar</string>
+    <string name="login_button_singin">ENTRAR</string>
 
     <string name="title_activity_splash">SplashActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="log_tag">JINKINGS</string>
+    <string name="login_signup_message">Ainda não tem cadastro?</string>
+    <string name="login_signup_link">Cadastre-se agora!</string>
 </resources>

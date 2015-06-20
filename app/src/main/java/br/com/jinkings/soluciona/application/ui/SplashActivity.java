@@ -22,13 +22,14 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(750);
 
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     });
                 } catch (InterruptedException e) {

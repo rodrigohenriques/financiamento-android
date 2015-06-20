@@ -6,11 +6,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Jinkings" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash">
+            android:label="@string/title_activity_splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +20,12 @@
         </activity>
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.LoginActivity"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.FinancingListActivity"
-            android:label="@string/title_activity_financing_list"/>
+            android:label="@string/title_activity_financing_list"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
