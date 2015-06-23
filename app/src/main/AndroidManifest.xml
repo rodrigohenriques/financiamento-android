@@ -21,11 +21,16 @@
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.LoginActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Login.Theme.Jinkings"/>
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.FinancingListActivity"
             android:label="@string/title_activity_financing_list"
             android:screenOrientation="portrait"/>
+
+        <activity android:name="br.com.jinkings.soluciona.application.ui.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"/>
     </application>
 
 </manifest>

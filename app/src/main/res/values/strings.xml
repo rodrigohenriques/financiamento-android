@@ -15,4 +15,7 @@
     <string name="log_tag">JINKINGS</string>
     <string name="login_signup_message">Ainda não tem cadastro?</string>
     <string name="login_signup_link">Cadastre-se agora!</string>
+    <string name="section_header_personal_info">DADOS PESSOAIS</string>
+    <string name="hint_fullname">Nome Completo</string>
+    <string name="hint_cpf">CPF</string>
 </resources>

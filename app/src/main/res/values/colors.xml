@@ -11,5 +11,6 @@
     <color name="login_button">#ffd200</color>
     <color name="login_button_focused">#ffd200</color>
     <color name="login_button_pressed">#DDffd200</color>
+    <color name="signin_pressed">#10FFFFFF</color>
 
 </resources>
