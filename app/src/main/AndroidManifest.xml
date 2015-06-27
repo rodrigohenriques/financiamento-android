@@ -30,6 +30,7 @@
 
         <activity android:name="br.com.jinkings.soluciona.application.ui.SignUpActivity"
             android:screenOrientation="portrait"
+            android:label="Cadastre-se"
             android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"/>
     </application>
 

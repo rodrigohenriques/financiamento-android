@@ -7,10 +7,15 @@
     <color name="primary_text">#ffd200</color>
     <color name="secondary_text">#5a8ec9</color>
     <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>
+    <color name="divider">#70B6B6B6</color>
     <color name="login_button">#ffd200</color>
-    <color name="login_button_focused">#ffd200</color>
-    <color name="login_button_pressed">#DDffd200</color>
+    <color name="login_button_focused">#FFC107</color>
+    <color name="login_button_pressed">#FFC107</color>
     <color name="signin_pressed">#10FFFFFF</color>
+
+
+    <color name="flat_pressed">#66999999</color>
+    <color name="flat_disabled_text">#40000000</color>
+    <color name="flat_normal_text">@color/secondary_text</color>
 
 </resources>

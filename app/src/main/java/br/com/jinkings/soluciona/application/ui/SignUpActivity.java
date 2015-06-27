@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import br.com.jinkings.financing.R;
-import butterknife.OnClick;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -20,8 +19,6 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @OnClick(R.id.button_signup_now)
-    public void signIn() {
-
+    public void signUp() {
     }
 }
