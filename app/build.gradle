@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.jinkings.soluciona"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
         versionName "Beta-0.0.1"
@@ -36,4 +36,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.0'
 
     compile 'com.jakewharton:butterknife:6.1.0'
+
+    compile 'br.com.m4u.commons.brazilian:library:0.4.0'
+
+    compile 'com.lsjwzh:materialloadingprogressbar:0.5.5-RELEASE'
+
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile fileTree(dir: 'libs', include: 'Parse-*.jar')
 }

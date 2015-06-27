@@ -1,25 +1,33 @@
 <resources>
     <string name="app_name">Jinkings Soluciona</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_financing_list">FinancingListActivity</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Senha</string>
     <string name="button_cadastrar">Cadastre-se</string>
     <string name="login_button_singin">ENTRAR</string>
 
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="log_tag">JINKINGS</string>
     <string name="login_signup_message">Ainda não tem cadastro?</string>
     <string name="login_signup_link">Cadastre-se agora!</string>
     <string name="section_header_personal_info">Dados Pessoais</string>
+
     <string name="hint_fullname">Nome Completo</string>
     <string name="hint_cpf">CPF</string>
     <string name="hint_phone">Telefone Residencial</string>
     <string name="hint_cellphone">Celular</string>
     <string name="hint_job_type">Categoria Profissional</string>
     <string name="hint_confirm_password">Confirmar Senhar</string>
+
+    <string name="invalid_email">Email inválido</string>
+    <string name="invalid_password">Senha inválida</string>
+    <string name="invalid_password_confirmation">Confirmação de senha inválida</string>
+    <string name="invalid_cpf">CPF inválido</string>
+    <string name="invalid_fullname">Preencha seu nome</string>
+    <string name="invalid_phone">Telefone inválido</string>
+    <string name="invalid_mobile_phone">Celular inválido</string>
+    <string name="invalid_form_message">Preencha o formulário corretamente</string>
+    <string name="invalid_job_category">Categoria inválida</string>
+
+    <string name="signup_snackbar_action_validation_failed">Ok</string>
 </resources>
