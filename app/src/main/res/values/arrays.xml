@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="job_categories">
+        <item>Assalariado</item>
+        <item>Empresário</item>
+        <item>Autônomo</item>
+        <item>Profissional liberal</item>
+        <item>Aposentado ou pensionista</item>
+    </string-array>
+</resources>

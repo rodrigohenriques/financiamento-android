@@ -36,7 +36,7 @@
 
         <activity android:name="br.com.jinkings.soluciona.application.ui.ListActivity"
             android:screenOrientation="portrait"
-            android:label="Simulações" />
+            android:label="@string/title_list_activity" />
     </application>
 
 </manifest>

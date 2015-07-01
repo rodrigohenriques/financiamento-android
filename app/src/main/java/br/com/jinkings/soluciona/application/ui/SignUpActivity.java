@@ -43,7 +43,7 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
     @InjectView(R.id.signup_text_input_cellphone)
     @MobilePhone(sequence = 3, messageResId = R.string.invalid_mobile_phone)
     EditText editTextCellPhone;
-    @InjectView(R.id.signup_text_input_job_type)
+    @InjectView(R.id.signup_text_input_job_category)
     @NotEmpty(sequence = 4, messageResId = R.string.invalid_job_category)
     EditText editTextJobCategory;
     @InjectView(R.id.signup_text_input_email)
@@ -56,10 +56,9 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
     @ConfirmPassword(sequence = 7, messageResId = R.string.invalid_password_confirmation)
     EditText editTextConfirmPassword;
 
-    @InjectView(R.id.progress_container)
-    View progressContainer;
-
     BrazilianValidator validator;
+
+    String[] stringArrayJobCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +66,14 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         validator = new BrazilianValidator(this);
         validator.setValidationListener(this);
+
+        stringArrayJobCategories = getResources().getStringArray(R.array.job_categories);
     }
 
     @Override
@@ -83,9 +86,23 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
         validator.validate();
     }
 
+    @OnClick(R.id.signup_text_input_job_category)
+    public void selectJobType() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.hint_job_category);
+        builder.setItems(stringArrayJobCategories, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int selectedIndex) {
+                editTextJobCategory.setText(stringArrayJobCategories[selectedIndex]);
+            }
+        });
+        builder.setNegativeButton(R.string.signup_job_type_dialog_cancel_button, null);
+        builder.create().show();
+    }
+
     @Override
     public void onValidationSucceeded() {
-        progressContainer.setVisibility(View.VISIBLE);
+        startProgress();
 
         ParseUser parseUser = new ParseUser();
 
@@ -103,10 +120,13 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
             @Override
             public void done(ParseException e) {
 
-                progressContainer.setVisibility(View.GONE);
+                finishProgress();
 
                 if (e != null) {
-                    Snackbar snackbar = Snackbar.make(editTextFullName, e.getMessage(), Snackbar.LENGTH_LONG);
+
+                    logError(e);
+
+                    Snackbar snackbar = Snackbar.make(editTextFullName, R.string.default_signup_error_message, Snackbar.LENGTH_LONG);
 
                     snackbar.setAction(R.string.signup_snackbar_action_retry, new View.OnClickListener() {
                         @Override
@@ -141,15 +161,7 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
             editText.setError(v.getCollatedErrorMessage(this));
         }
 
-        final Snackbar snackbar = Snackbar.make(editTextFullName, R.string.invalid_form_message, Snackbar.LENGTH_LONG);
-        snackbar.setAction(R.string.signup_snackbar_action_validation_failed, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                snackbar.dismiss();
-            }
-        });
-
-        snackbar.show();
+        justSnackIt(R.string.invalid_form_message);
     }
 
 }

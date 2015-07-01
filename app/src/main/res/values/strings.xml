@@ -16,7 +16,7 @@
     <string name="hint_cpf">CPF</string>
     <string name="hint_phone">Telefone Residencial com DDD</string>
     <string name="hint_cellphone">Celular com DDD</string>
-    <string name="hint_job_type">Categoria Profissional</string>
+    <string name="hint_job_category">Categoria Profissional</string>
     <string name="hint_confirm_password">Confirmar Senha</string>
 
     <string name="invalid_email">Email inválido</string>
@@ -36,4 +36,10 @@
     <string name="signup_confirm_action">CONFIRMAR</string>
     <string name="content_logo">Logo da empresa</string>
     <string name="title_signup_activity">Cadastre-se</string>
+    <string name="signup_job_type_dialog_cancel_button">FECHAR</string>
+    <string name="default_signup_error_message">Não foi possível efetuar seu cadastro. Tente novamente mais tarde.</string>
+    <string name="login_user_not_found_message">Usuário não cadastrado no sistema</string>
+    <string name="default_snackbar_action">OK</string>
+    <string name="login_failed_default_message">Ocorreu um falha no login</string>
+    <string name="title_list_activity">Simulações</string>
 </resources>
