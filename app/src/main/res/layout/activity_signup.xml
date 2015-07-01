@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -11,7 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary"
         android:titleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-        app:titleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse" />
+        app:titleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+        tools:ignore="UnusedAttribute"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -144,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_alignParentBottom="true"
-                android:gravity="center_vertical|right"
+                android:gravity="center_vertical|end"
                 android:orientation="horizontal">
 
                 <Button
@@ -152,7 +154,7 @@
                     style="@style/AppCompat.Button.Flat.Common"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="CONFIRMAR" />
+                    android:text="@string/signup_confirm_action" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -161,16 +163,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/divider"
+            android:clickable="true"
             android:visibility="gone">
 
-            <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
-                android:layout_centerInParent="true"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:mlpb_enable_circle_background="true"
-                app:mlpb_progress_stoke_width="5dp"
-                app:mlpb_progress_text_visibility="invisible"
-                app:mlpb_show_arrow="false" />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </FrameLayout>
 </RelativeLayout>

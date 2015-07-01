@@ -14,10 +14,10 @@
 
     <string name="hint_fullname">Nome Completo</string>
     <string name="hint_cpf">CPF</string>
-    <string name="hint_phone">Telefone Residencial</string>
-    <string name="hint_cellphone">Celular</string>
+    <string name="hint_phone">Telefone Residencial com DDD</string>
+    <string name="hint_cellphone">Celular com DDD</string>
     <string name="hint_job_type">Categoria Profissional</string>
-    <string name="hint_confirm_password">Confirmar Senhar</string>
+    <string name="hint_confirm_password">Confirmar Senha</string>
 
     <string name="invalid_email">Email inválido</string>
     <string name="invalid_password">Senha inválida</string>
@@ -29,5 +29,11 @@
     <string name="invalid_form_message">Preencha o formulário corretamente</string>
     <string name="invalid_job_category">Categoria inválida</string>
 
-    <string name="signup_snackbar_action_validation_failed">Ok</string>
+    <string name="signup_snackbar_action_validation_failed">OK</string>
+    <string name="signup_snackbar_action_retry">TENTAR NOVAMENTE</string>
+    <string name="signup_success">Usuário cadastrado com sucesso!</string>
+    <string name="signup_success_dialog_positive_button">FECHAR</string>
+    <string name="signup_confirm_action">CONFIRMAR</string>
+    <string name="content_logo">Logo da empresa</string>
+    <string name="title_signup_activity">Cadastre-se</string>
 </resources>

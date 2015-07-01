@@ -39,8 +39,6 @@ dependencies {
 
     compile 'br.com.m4u.commons.brazilian:library:0.4.0'
 
-    compile 'com.lsjwzh:materialloadingprogressbar:0.5.5-RELEASE'
-
-    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.parse.bolts:bolts-android:1.2.0'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
 }

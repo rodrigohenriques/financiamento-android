@@ -10,7 +10,7 @@ import br.com.jinkings.financing.R;
 
 public class SplashActivity extends Activity {
 
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

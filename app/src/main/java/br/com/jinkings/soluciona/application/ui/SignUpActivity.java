@@ -1,8 +1,9 @@
 package br.com.jinkings.soluciona.application.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
@@ -24,12 +25,12 @@ import br.com.jinkings.financing.R;
 import br.com.m4u.commons.brazilian.library.validator.BrazilianValidator;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.Cpf;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.MobilePhone;
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
 
-public class SignUpActivity extends AppCompatActivity implements Validator.ValidationListener {
+@SuppressWarnings("WeakerAccess")
+public class SignUpActivity extends MainActivity implements Validator.ValidationListener {
     @InjectView(R.id.signup_text_input_fullname)
     @NotEmpty(sequence = 0, messageResId = R.string.invalid_fullname)
     EditText editTextFullName;
@@ -63,16 +64,18 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ButterKnife.inject(this);
-
         validator = new BrazilianValidator(this);
         validator.setValidationListener(this);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_signup;
     }
 
     @OnClick(R.id.button_confirm)
@@ -101,6 +104,31 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
             public void done(ParseException e) {
 
                 progressContainer.setVisibility(View.GONE);
+
+                if (e != null) {
+                    Snackbar snackbar = Snackbar.make(editTextFullName, e.getMessage(), Snackbar.LENGTH_LONG);
+
+                    snackbar.setAction(R.string.signup_snackbar_action_retry, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            signUp();
+                        }
+                    });
+
+                    snackbar.show();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+
+                    builder.setMessage(R.string.signup_success);
+                    builder.setPositiveButton(R.string.signup_success_dialog_positive_button, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+
+                    builder.create().show();
+                }
             }
         });
     }
@@ -123,4 +151,5 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
 
         snackbar.show();
     }
+
 }

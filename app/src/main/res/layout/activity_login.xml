@@ -10,12 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:ignore="UselessParent">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="120dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo"
+            android:contentDescription="@string/content_logo"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/login_text_input_layout_email"
@@ -35,7 +37,7 @@
             android:id="@+id/login_text_input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="4dp">
 
             <EditText
                 android:id="@+id/login_text_input_password"

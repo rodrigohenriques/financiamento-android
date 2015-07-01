@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.jinkings.financing" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,8 +15,8 @@
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Login.Theme.Jinkings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,18 +25,18 @@
         </activity>
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.LoginActivity"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Login.Theme.Jinkings"/>
-        <activity
-            android:name="br.com.jinkings.soluciona.application.ui.FinancingListActivity"
-            android:label="@string/title_activity_financing_list"
-            android:screenOrientation="portrait"/>
 
         <activity android:name="br.com.jinkings.soluciona.application.ui.SignUpActivity"
             android:screenOrientation="portrait"
-            android:label="Cadastre-se"
-            android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"/>
+            android:label="@string/title_signup_activity"
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"
+            tools:ignore="UnusedAttribute" />
+
+        <activity android:name="br.com.jinkings.soluciona.application.ui.ListActivity"
+            android:screenOrientation="portrait"
+            android:label="Simulações" />
     </application>
 
 </manifest>
