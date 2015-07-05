@@ -8,16 +8,21 @@
     <TextView
         android:id="@+id/value_and_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Primeiro texto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"/>
 
     <TextView
         android:id="@+id/simulation_type"
         android:layout_width="match_parent"
+        android:text="Segundo texto"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/simulation_status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:text="Terceiro texto"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
 
 </LinearLayout>

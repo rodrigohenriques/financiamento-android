@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:name="br.com.jinkings.soluciona.application.JinkingsSoluciona">
         <activity
-            android:name="br.com.jinkings.soluciona.application.ui.SplashActivity"
+            android:name="br.com.jinkings.soluciona.application.ui.activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Login.Theme.Jinkings">
@@ -24,17 +24,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.com.jinkings.soluciona.application.ui.LoginActivity"
+            android:name="br.com.jinkings.soluciona.application.ui.activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Login.Theme.Jinkings"/>
 
-        <activity android:name="br.com.jinkings.soluciona.application.ui.SignUpActivity"
+        <activity android:name="br.com.jinkings.soluciona.application.ui.activities.SignUpActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_signup_activity"
-            android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.LoginActivity"
             tools:ignore="UnusedAttribute" />
 
-        <activity android:name="br.com.jinkings.soluciona.application.ui.HomeActivity"
+        <activity android:name="br.com.jinkings.soluciona.application.ui.activities.HomeActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_home_activity" />
     </application>

@@ -136,7 +136,11 @@ public class Simulation extends ParseObject {
     }
 
     public SimulationStatus getStatus() {
-        return SimulationStatus.find(SimulationFields.STATUS);
+        return SimulationStatus.find(getStatusString());
+    }
+
+    public String getStatusString() {
+        return getString(SimulationFields.STATUS);
     }
 
     public void setStatus(SimulationStatus status) {
@@ -191,12 +195,8 @@ public class Simulation extends ParseObject {
         return String.format("R$ %s - %s", getPropertyPrice(), getDataEnvio());
     }
 
-    public String getStatusString() {
-        return getStatus().getValue();
-    }
-
     public String getTypeAndLocation() {
-        return String.format("%s - %s", getPropertyType(), getLocation());
+        return String.format("%s - %s", getPropertyTypeString(), getLocation());
     }
 
     public static ParseQuery<Simulation> getQuery() {

@@ -1,6 +1,6 @@
-package br.com.jinkings.soluciona.application.adapter;
+package br.com.jinkings.soluciona.application.ui.adapter;
 
-import android.support.design.widget.Snackbar;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -20,9 +20,13 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
 
     TypedValue typedValue = new TypedValue();
 
+    Context context;
     List<Simulation> simulations;
 
-    public SimulationRecyclerViewAdapter(List<Simulation> simulations) {
+    OnItemClickListener onItemClickListener;
+
+    public SimulationRecyclerViewAdapter(Context context, List<Simulation> simulations) {
+        this.context = context;
         this.simulations = simulations;
     }
 
@@ -33,19 +37,26 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
         return new ViewHolder(view);
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         final Simulation simulation = simulations.get(position);
 
+        int color = context.getResources().getColor(simulation.getStatus().getColorId());
+
         holder.textViewPriceAndDate.setText(simulation.getPriceAndDate());
         holder.textViewTypeAndLocation.setText(simulation.getTypeAndLocation());
         holder.textViewStatus.setText(simulation.getStatusString());
-
+        holder.textViewStatus.setTextColor(color);
+        holder.view.setBackgroundResource(R.drawable.btn_flat_selector);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Clicou no item " + simulation.getPriceAndDate(), Snackbar.LENGTH_LONG).show();
+                onItemClickListener.onItemClick(simulation);
             }
         });
     }
@@ -78,5 +89,9 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
                     ", textViewStatus=" + textViewStatus +
                     '}';
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Simulation simulation);
     }
 }

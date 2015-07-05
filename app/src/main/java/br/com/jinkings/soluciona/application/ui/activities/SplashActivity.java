@@ -1,4 +1,4 @@
-package br.com.jinkings.soluciona.application.ui;
+package br.com.jinkings.soluciona.application.ui.activities;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package br.com.jinkings.soluciona.application.ui;
+package br.com.jinkings.soluciona.application.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -40,15 +40,15 @@ public abstract class MainActivity extends AppCompatActivity {
         Log.e(logTag, e.getMessage(), e);
     }
 
-    protected void startProgress() {
+    public void startProgress() {
         rootView.addView(viewComponentProgressBar);
     }
 
-    protected void finishProgress() {
+    public void finishProgress() {
         rootView.removeView(viewComponentProgressBar);
     }
 
-    protected void justSnackIt(int messageResId) {
+    public void justSnackIt(int messageResId) {
         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), messageResId, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.default_snackbar_action, new View.OnClickListener() {
             @Override

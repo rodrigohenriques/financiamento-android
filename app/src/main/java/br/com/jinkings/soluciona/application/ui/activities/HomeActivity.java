@@ -1,4 +1,4 @@
-package br.com.jinkings.soluciona.application.ui;
+package br.com.jinkings.soluciona.application.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,15 +12,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.List;
 
 import br.com.jinkings.financing.R;
-import br.com.jinkings.soluciona.application.adapter.SimulationsFragment;
+import br.com.jinkings.soluciona.application.ui.fragment.AboutUsFragment;
+import br.com.jinkings.soluciona.application.ui.fragment.SimulationsFragment;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 import butterknife.InjectView;
 
@@ -80,7 +78,7 @@ public class HomeActivity extends MainActivity {
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
-                        openSimulationList();
+                        openSimulationsFragment();
                         return true;
                     // For rest of the options we just show a toast on click
                     case R.id.nav_profile:
@@ -90,7 +88,11 @@ public class HomeActivity extends MainActivity {
                         Toast.makeText(getApplicationContext(), "Help Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.nav_about_us:
-                        Toast.makeText(getApplicationContext(), "About us Selected", Toast.LENGTH_SHORT).show();
+                        setTitle(R.string.title_about_us_fragment);
+                        AboutUsFragment aboutUsFragment = AboutUsFragment.newInstance("", "");
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.home_frame, aboutUsFragment);
+                        fragmentTransaction.commit();
                         return true;
                 }
 
@@ -104,30 +106,11 @@ public class HomeActivity extends MainActivity {
 
         textViewNavHeaderUsername.setText(username);
 
-        startProgress();
-
-        ParseQuery<Simulation> query = Simulation.getQuery();
-
-        query.findInBackground(new FindCallback<Simulation>() {
-            @Override
-            public void done(List<Simulation> list, ParseException e) {
-
-                if (e != null) {
-                    int errorMsgId = R.string.default_loading_simulations_error_message;
-
-                    justSnackIt(errorMsgId);
-                } else {
-                    simulations = list;
-                    openSimulationList();
-                }
-
-                finishProgress();
-            }
-        });
+        openSimulationsFragment();
     }
 
-    private void openSimulationList() {
-        setTitle(R.string.title_list_activity);
+    private void openSimulationsFragment() {
+        setTitle(R.string.title_simulations_fragment);
         SimulationsFragment simulationsFragment = new SimulationsFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.home_frame, simulationsFragment);
