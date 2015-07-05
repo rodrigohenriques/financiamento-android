@@ -79,7 +79,7 @@ public class LoginActivity extends MainActivity implements Validator.ValidationL
                         errorMsgId = R.string.login_user_not_found_message;
                     }
 
-                    justSnackIt(errorMsgId);
+
                 } else {
                     loggedIn();
                 }
@@ -90,7 +90,7 @@ public class LoginActivity extends MainActivity implements Validator.ValidationL
     }
 
     private void loggedIn() {
-        Intent intent = new Intent(LoginActivity.this, ListActivity.class);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(intent);
         finish();
     }

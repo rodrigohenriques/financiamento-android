@@ -34,9 +34,9 @@
             android:parentActivityName="br.com.jinkings.soluciona.application.ui.LoginActivity"
             tools:ignore="UnusedAttribute" />
 
-        <activity android:name="br.com.jinkings.soluciona.application.ui.ListActivity"
+        <activity android:name="br.com.jinkings.soluciona.application.ui.HomeActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_list_activity" />
+            android:label="@string/title_home_activity" />
     </application>
 
 </manifest>

@@ -13,8 +13,8 @@ import butterknife.ButterKnife;
 public abstract class MainActivity extends AppCompatActivity {
 
     protected String logTag;
-    private ViewGroup rootView;
-    private View viewComponentProgressBar;
+    protected ViewGroup rootView;
+    protected View viewComponentProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

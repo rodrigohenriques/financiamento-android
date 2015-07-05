@@ -42,4 +42,10 @@
     <string name="default_snackbar_action">OK</string>
     <string name="login_failed_default_message">Ocorreu um falha no login</string>
     <string name="title_list_activity">Simulações</string>
+    <string name="title_home_activity">Soluciona</string>
+    <string name="menu_outras_opcoes">Outras opções</string>
+    <string name="title_help_activity">Ajuda</string>
+    <string name="title_about_us_activity">Sobre</string>
+    <string name="title_profile_activity">Perfil</string>
+    <string name="default_loading_simulations_error_message">Ocorreu um erro durante o carregamento das informações da sua conta</string>
 </resources>
