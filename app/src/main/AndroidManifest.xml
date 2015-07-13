@@ -7,16 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="br.com.jinkings.soluciona.application.JinkingsSoluciona"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name="br.com.jinkings.soluciona.application.JinkingsSoluciona">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/Login.Theme.Jinkings">
+            android:theme="@style/Login.Theme.Jinkings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,17 +26,25 @@
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.activities.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Login.Theme.Jinkings"/>
-
-        <activity android:name="br.com.jinkings.soluciona.application.ui.activities.SignUpActivity"
-            android:screenOrientation="portrait"
+            android:theme="@style/Login.Theme.Jinkings" />
+        <activity
+            android:name="br.com.jinkings.soluciona.application.ui.activities.SignUpActivity"
             android:label="@string/title_signup_activity"
             android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.LoginActivity"
-            tools:ignore="UnusedAttribute" />
-
-        <activity android:name="br.com.jinkings.soluciona.application.ui.activities.HomeActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_home_activity" />
+            tools:ignore="UnusedAttribute" />
+        <activity
+            android:name="br.com.jinkings.soluciona.application.ui.activities.HomeActivity"
+            android:label="@string/title_home_activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="br.com.jinkings.soluciona.application.ui.activities.NewSimulationActivity"
+            android:label="@string/title_activity_new_simulation"
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>
