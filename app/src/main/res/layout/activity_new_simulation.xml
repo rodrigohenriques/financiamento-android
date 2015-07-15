@@ -14,4 +14,40 @@
         app:titleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
         tools:ignore="UnusedAttribute" />
 
+    <FrameLayout
+        android:id="@+id/new_simulation_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/section_divider"/>
+    <View
+        android:id="@+id/section_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/button_container"
+        android:background="@color/divider" />
+
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_previous"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/previous_action" />
+
+        <Button
+            android:id="@+id/button_next"
+            style="@style/AppCompat.Button.Flat.Common"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/action_next" />
+    </LinearLayout>
+
 </RelativeLayout>

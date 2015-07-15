@@ -1,30 +1,27 @@
 package br.com.jinkings.soluciona.application.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.LogOutCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
-
-import java.util.List;
 
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.application.ui.fragment.AboutUsFragment;
 import br.com.jinkings.soluciona.application.ui.fragment.SimulationsFragment;
-import br.com.jinkings.soluciona.domain.model.Simulation;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
-/**
- * Created by rodrigohenriques on 6/30/15.
- */
 public class HomeActivity extends MainActivity {
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -36,9 +33,6 @@ public class HomeActivity extends MainActivity {
     NavigationView navigationView;
 
     ParseUser user;
-    List<Simulation> simulations;
-
-    ActionBar supportActionBar;
 
     @Override
     protected int getContentView() {
@@ -49,18 +43,11 @@ public class HomeActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
-
-        rootView = (ViewGroup) findViewById(R.id.home_frame);
-
-        supportActionBar = getSupportActionBar();
-
         if (supportActionBar != null) {
             supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        rootView = (ViewGroup) findViewById(R.id.home_frame);
 
         setupDrawerContent(navigationView);
 
@@ -68,7 +55,7 @@ public class HomeActivity extends MainActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 //Checking if the item is in checked state or not, if not make it in checked state
-                if(menuItem.isChecked()) menuItem.setChecked(false);
+                if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
 
                 //Closing drawer on item click
@@ -84,15 +71,8 @@ public class HomeActivity extends MainActivity {
                     case R.id.nav_profile:
                         Toast.makeText(getApplicationContext(), "Profile Selected", Toast.LENGTH_SHORT).show();
                         return true;
-                    case R.id.nav_help:
-                        Toast.makeText(getApplicationContext(), "Help Selected", Toast.LENGTH_SHORT).show();
-                        return true;
                     case R.id.nav_about_us:
-                        setTitle(R.string.title_about_us_fragment);
-                        AboutUsFragment aboutUsFragment = AboutUsFragment.newInstance("", "");
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.home_frame, aboutUsFragment);
-                        fragmentTransaction.commit();
+                        openAboutUsFragment();
                         return true;
                 }
 
@@ -109,11 +89,21 @@ public class HomeActivity extends MainActivity {
         openSimulationsFragment();
     }
 
+    private void openAboutUsFragment() {
+        AboutUsFragment aboutUsFragment = AboutUsFragment.newInstance("", "");
+        openFragment(aboutUsFragment, R.string.title_about_us_fragment);
+    }
+
     private void openSimulationsFragment() {
-        setTitle(R.string.title_simulations_fragment);
         SimulationsFragment simulationsFragment = new SimulationsFragment();
+        openFragment(simulationsFragment, R.string.title_simulations_fragment);
+    }
+
+    private void openFragment(Fragment fragment, int titleId) {
+        setTitle(R.string.title_simulations_fragment);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.home_frame, simulationsFragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.replace(R.id.home_frame, fragment);
         fragmentTransaction.commit();
     }
 
@@ -139,25 +129,24 @@ public class HomeActivity extends MainActivity {
                 });
     }
 
-    @Override
-    public void setTitle(CharSequence title) {
-        super.setTitle(title);
+    @OnClick(R.id.nav_header_logout)
+    public void logout() {
+        startProgress();
 
-        if (supportActionBar != null) {
-            supportActionBar.setTitle(title);
-        }
-    }
+        ParseUser.logOutInBackground(new LogOutCallback() {
+            @Override
+            public void done(ParseException e) {
 
-    @Override
-    public void setTitle(int titleId) {
-        super.setTitle(titleId);
+                if (e != null) {
+                    justSnackIt(R.string.logout_failed_default_message);
+                } else {
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-        if (supportActionBar != null) {
-            supportActionBar.setTitle(titleId);
-        }
-    }
-
-    public List<Simulation> getSimulations() {
-        return simulations;
+                finishProgress();
+            }
+        });
     }
 }

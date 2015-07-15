@@ -79,7 +79,7 @@ public class LoginActivity extends MainActivity implements Validator.ValidationL
                         errorMsgId = R.string.login_user_not_found_message;
                     }
 
-
+                    justSnackIt(errorMsgId);
                 } else {
                     loggedIn();
                 }

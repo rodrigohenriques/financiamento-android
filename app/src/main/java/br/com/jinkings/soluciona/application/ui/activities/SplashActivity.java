@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import com.parse.ParseUser;
+
 import br.com.jinkings.financing.R;
 
 public class SplashActivity extends Activity {
@@ -18,24 +20,33 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(750);
+        if (ParseUser.getCurrentUser() != null) {
 
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    Log.e(getString(R.string.log_tag), e.getMessage(), e);
+            startLoginActivity();
+        } else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(750);
+
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                startLoginActivity();
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        Log.e(getString(R.string.log_tag), e.getMessage(), e);
+                    }
                 }
-            }
-        }).start();
+            }).start();
+        }
+    }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -1,8 +1,8 @@
 package br.com.jinkings.soluciona.application.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,30 +17,38 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import br.com.jinkings.financing.R;
+import br.com.jinkings.soluciona.application.ui.activities.NewSimulationActivity;
 import br.com.jinkings.soluciona.application.ui.adapter.SimulationRecyclerViewAdapter;
 import br.com.jinkings.soluciona.application.ui.recyclerview.DividerItemDecoration;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 import br.com.jinkings.soluciona.domain.model.SimulationFields;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by rodrigohenriques on 7/4/15.
  */
 public class SimulationsFragment extends MainFragment implements SimulationRecyclerViewAdapter.OnItemClickListener {
 
-    CoordinatorLayout rootView;
-    RecyclerView recyclerView;
+    @InjectView(R.id.simulation_textview_empty_list)
     View emptyList;
+    @InjectView(R.id.simulation_recyclerview)
+    RecyclerView recyclerView;
+
     List<Simulation> simulations;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        rootView = (CoordinatorLayout) inflater.inflate(R.layout.fragment_simulations, container, false);
-        emptyList = rootView.findViewById(R.id.simulation_textview_empty_list);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.simulation_recyclerview);
+        View rootView = inflater.inflate(R.layout.fragment_simulations, container, false);
+
+        ButterKnife.inject(this, rootView);
+
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+
         return rootView;
     }
 
@@ -87,5 +95,11 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
     @Override
     public void onItemClick(Simulation simulation) {
         justSnackIt(simulation.getPriceAndDate());
+    }
+
+    @OnClick(R.id.simulation_button_new)
+    public void newSimulation() {
+        Intent intent = new Intent(getActivity(), NewSimulationActivity.class);
+        startActivity(intent);
     }
 }

@@ -2,7 +2,9 @@ package br.com.jinkings.soluciona.application.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ public abstract class MainActivity extends AppCompatActivity {
     protected String logTag;
     protected ViewGroup rootView;
     protected View viewComponentProgressBar;
+    protected ActionBar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,18 @@ public abstract class MainActivity extends AppCompatActivity {
 
         rootView = (ViewGroup) getWindow().getDecorView().getRootView();
         viewComponentProgressBar = getLayoutInflater().inflate(R.layout.component_progressbar, null);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
+        supportActionBar = getSupportActionBar();
+
+        if (supportActionBar != null) {
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected abstract int getContentView();
@@ -58,5 +73,23 @@ public abstract class MainActivity extends AppCompatActivity {
         });
 
         snackbar.show();
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+
+        if (supportActionBar != null) {
+            supportActionBar.setTitle(title);
+        }
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        super.setTitle(titleId);
+
+        if (supportActionBar != null) {
+            supportActionBar.setTitle(titleId);
+        }
     }
 }

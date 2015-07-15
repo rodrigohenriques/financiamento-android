@@ -38,7 +38,7 @@
     <string name="title_signup_activity">Cadastre-se</string>
     <string name="signup_job_type_dialog_cancel_button">FECHAR</string>
     <string name="default_signup_error_message">Não foi possível efetuar seu cadastro. Tente novamente mais tarde.</string>
-    <string name="login_user_not_found_message">Usuário não cadastrado no sistema</string>
+    <string name="login_user_not_found_message">Usuário ou senha inválido</string>
     <string name="default_snackbar_action">OK</string>
     <string name="login_failed_default_message">Ocorreu um falha no login</string>
     <string name="title_simulations_fragment">Simulações</string>
@@ -57,4 +57,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="previous_action">ANTERIOR</string>
+    <string name="action_next">PRÓXIMO</string>
+    <string name="logout_failed_default_message">Ocorreu um erro ao processar seu logout</string>
+    <string name="action_send_new_simulation">ENVIAR</string>
+    <string name="dialog_title_warning">ATENÇÃO</string>
+    <string name="dialog_new_simulation_on_back_pressed_message">Deseja cancelar essa nova simulação?</string>
+    <string name="dialog_positive_button">SIM</string>
+    <string name="dialog_negative_button">NÃO</string>
 </resources>
