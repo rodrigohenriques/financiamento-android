@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragmento 3" />
+        android:layout_margin="@dimen/screen_padding_default"
+        android:text="@string/subtitle_bank_account_info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/screen_padding_default"
+            android:layout_marginRight="@dimen/screen_padding_default"
+            android:orientation="vertical">
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
+                    android:id="@+id/bank_account_info_text_input_has_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_has_account" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/bank_account_info_text_input_agency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_agency"
+                    android:inputType="number" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/bank_account_info_text_input_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_account"
+                    android:inputType="number" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

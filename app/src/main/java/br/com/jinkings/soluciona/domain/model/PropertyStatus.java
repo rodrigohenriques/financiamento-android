@@ -5,10 +5,10 @@ import com.parse.ParseObject;
 
 import br.com.jinkings.soluciona.application.ui.customview.Listable;
 
-@ParseClassName("TipoImovel")
-public class PropertyType extends ParseObject implements Listable {
+@ParseClassName("CondicaoImovel")
+public class PropertyStatus extends ParseObject implements Listable {
     public String getDescription() {
-        return getString(PropertyTypeFields.DESCRICAO);
+        return getString(PropertyStatusFields.DESCRICAO);
     }
 
     @Override

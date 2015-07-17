@@ -46,7 +46,7 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
 
         final Simulation simulation = simulations.get(position);
 
-        int color = context.getResources().getColor(simulation.getStatus().getColorId());
+        int color = simulation.getStatus().getColor();
 
         holder.textViewPriceAndDate.setText(simulation.getPriceAndDate());
         holder.textViewTypeAndLocation.setText(simulation.getTypeAndLocation());

@@ -21,6 +21,8 @@ import com.parse.SignUpCallback;
 import java.util.List;
 
 import br.com.jinkings.financing.R;
+import br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText;
+import br.com.jinkings.soluciona.domain.model.BasicListable;
 import br.com.m4u.commons.brazilian.library.validator.BrazilianValidator;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.Cpf;
 import br.com.m4u.commons.brazilian.library.validator.saripaar.annotations.MobilePhone;
@@ -44,7 +46,7 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
     EditText editTextCellPhone;
     @InjectView(R.id.signup_text_input_job_category)
     @NotEmpty(sequence = 4, messageResId = R.string.invalid_job_category)
-    EditText editTextJobCategory;
+    ClickToSelectEditText<BasicListable> editTextJobCategory;
     @InjectView(R.id.signup_text_input_email)
     @Email(sequence = 5, messageResId = R.string.invalid_email)
     EditText editTextEmail;
@@ -57,8 +59,6 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
 
     BrazilianValidator validator;
 
-    String[] stringArrayJobCategories;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,9 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
         validator = new BrazilianValidator(this);
         validator.setValidationListener(this);
 
-        stringArrayJobCategories = getResources().getStringArray(R.array.job_categories);
+        String[] stringArrayJobCategories = getResources().getStringArray(R.array.job_categories);
+
+        editTextJobCategory.setItems(BasicListable.with(stringArrayJobCategories));
     }
 
     @Override
@@ -77,20 +79,6 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
     @OnClick(R.id.button_confirm)
     public void signUp() {
         validator.validate();
-    }
-
-    @OnClick(R.id.signup_text_input_job_category)
-    public void selectJobType() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.hint_job_category);
-        builder.setItems(stringArrayJobCategories, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int selectedIndex) {
-                editTextJobCategory.setText(stringArrayJobCategories[selectedIndex]);
-            }
-        });
-        builder.setNegativeButton(R.string.signup_job_type_dialog_cancel_button, null);
-        builder.create().show();
     }
 
     @Override
@@ -133,7 +121,7 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
 
                     builder.setMessage(R.string.signup_success);
-                    builder.setPositiveButton(R.string.signup_success_dialog_positive_button, new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(R.string.dialog_close_button, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             finish();

@@ -75,15 +75,15 @@ public class Simulation extends ParseObject {
         put(SimulationFields.DATA_NASCIMENTO, birthday);
     }
 
-    public boolean hasPropertyInFinancingLocal() {
+    public boolean hasPropertyNearBy() {
         return getBoolean(SimulationFields.IMOVEL_MUNICIPIO_FINANCIAMENTO);
     }
 
-    public void havePropertyInFinancingLocal() {
+    public void havePropertyNearBy() {
         put(SimulationFields.IMOVEL_MUNICIPIO_FINANCIAMENTO, true);
     }
 
-    public void hasNoPropertyInFinancingLocal() {
+    public void haveNoPropertyNearBy() {
         put(SimulationFields.IMOVEL_MUNICIPIO_FINANCIAMENTO, false);
     }
 
@@ -136,27 +136,39 @@ public class Simulation extends ParseObject {
     }
 
     public SimulationStatus getStatus() {
-        return SimulationStatus.find(getStatusString());
+        return (SimulationStatus) getParseObject(SimulationFields.STATUS);
     }
 
     public String getStatusString() {
-        return getString(SimulationFields.STATUS);
+        return getStatus().getDescription();
     }
 
     public void setStatus(SimulationStatus status) {
-        put(SimulationFields.STATUS, status.value);
+        put(SimulationFields.STATUS, status);
     }
 
     public PropertyType getPropertyType() {
-        return PropertyType.find(getPropertyTypeString());
+        return (PropertyType) getParseObject(SimulationFields.TIPO_IMOVEL);
     }
 
     public String getPropertyTypeString() {
-        return getString(SimulationFields.TIPO_IMOVEL);
+        return getPropertyType().getDescription();
     }
 
     public void setPropertyType(PropertyType propertyType) {
-        put(SimulationFields.TIPO_IMOVEL, propertyType.value);
+        put(SimulationFields.TIPO_IMOVEL, propertyType);
+    }
+
+
+    public PropertyStatus getPropertyStatus() {
+        return (PropertyStatus) getParseObject(SimulationFields.CONDICAO_IMOVEL);
+    }
+
+    public String getPropertyStatusString() {
+        return getPropertyStatus().getDescription();
+    }
+    public void setPropertyStatus(PropertyStatus propertyStatus) {
+        put(SimulationFields.CONDICAO_IMOVEL, propertyStatus);
     }
 
     public String getUf() {
@@ -201,5 +213,10 @@ public class Simulation extends ParseObject {
 
     public static ParseQuery<Simulation> getQuery() {
         return ParseQuery.getQuery(Simulation.class);
+    }
+
+    public boolean validate() {
+        // TODO implementar validação do dado
+        return true;
     }
 }

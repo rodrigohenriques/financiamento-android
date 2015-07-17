@@ -7,4 +7,9 @@
         <item>Profissional liberal</item>
         <item>Aposentado ou pensionista</item>
     </string-array>
+
+    <string-array name="yes_no">
+        <item>Sim</item>
+        <item>Não</item>
+    </string-array>
 </resources>

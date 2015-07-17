@@ -1,11 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragmento 2" />
+        android:text="@string/subtitle_financing_info"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_margin="@dimen/screen_padding_default"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/screen_padding_default"
+            android:layout_marginRight="@dimen/screen_padding_default">
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
+                    android:id="@+id/financing_info_text_input_has_financing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="@string/hint_has_financing" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/financing_info_text_input_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_financing_amount"
+                    android:inputType="number"/>
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/financing_info_text_input_deadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_deadline"
+                    android:inputType="number" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
+                    android:id="@+id/financing_info_text_input_has_property_near_by"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:textSize="14sp"
+                    android:hint="@string/hint_has_property_near_by" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
+                    android:id="@+id/financing_info_text_input_has_property_where_lives"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:textSize="14sp"
+                    android:hint="@string/hint_has_property_where_lives" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/financing_info_text_input_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_birthday"
+                    android:inputType="date" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

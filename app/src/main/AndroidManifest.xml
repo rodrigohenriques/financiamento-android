@@ -40,7 +40,8 @@
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.activities.NewSimulationActivity"
             android:label="@string/title_activity_new_simulation"
-            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" >
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.HomeActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" />

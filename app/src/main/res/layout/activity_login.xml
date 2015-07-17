@@ -19,7 +19,7 @@
             android:src="@drawable/logo"
             android:contentDescription="@string/content_logo"/>
 
-        <android.support.design.widget.TextInputLayout
+        <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
             android:id="@+id/login_text_input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +31,9 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress" />
-        </android.support.design.widget.TextInputLayout>
+        </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
             android:id="@+id/login_text_input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
         <Button
             android:id="@+id/login_button_signin"

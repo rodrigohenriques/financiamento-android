@@ -17,8 +17,9 @@ public final class SimulationFields {
     public static final String MUNICIPIO = "municipio";
     public static final String POSSUI_FINANCIAMENTO = "possuiFinanciamento";
     public static final String PRAZO_DESEJADO = "prazoDesejado";
-    public static final String STATUS = "status";
+    public static final String STATUS = "Status";
     public static final String TIPO_IMOVEL = "tipoImovel";
+    public static final String CONDICAO_IMOVEL = "condicaoImovel";
     public static final String UF = "uf";
     public static final String USER = "user";
     public static final String VALOR_FINANCIAMENTO = "valorFinanciamento";

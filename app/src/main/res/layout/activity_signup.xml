@@ -31,7 +31,7 @@
                 android:orientation="vertical"
                 android:padding="@dimen/screen_padding_default">
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -41,9 +41,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_fullname"
                         android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -53,9 +53,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_cpf"
                         android:inputType="number" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -65,9 +65,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_phone"
                         android:inputType="phone" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -77,22 +77,20 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_cellphone"
                         android:inputType="phone" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
                         android:id="@+id/signup_text_input_job_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="false"
                         android:hint="@string/hint_job_category" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -102,9 +100,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_email"
                         android:inputType="textEmailAddress" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -114,9 +112,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_password"
                         android:inputType="textPassword" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -126,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_confirm_password"
                         android:inputType="textPassword" />
-                </android.support.design.widget.TextInputLayout>
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
             </LinearLayout>
         </ScrollView>
 
