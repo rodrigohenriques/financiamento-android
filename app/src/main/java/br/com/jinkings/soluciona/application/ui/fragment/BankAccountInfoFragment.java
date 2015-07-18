@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText;
 import br.com.jinkings.soluciona.domain.model.BasicListable;
@@ -17,6 +19,7 @@ import butterknife.InjectView;
 public class BankAccountInfoFragment extends NewSimulationFragment {
 
     @InjectView(R.id.bank_account_info_text_input_has_account)
+    @NotEmpty(sequence = 0, messageResId = R.string.invalid_option)
     ClickToSelectEditText<BasicListable> clickToSelectEditTextHasAccount;
 
     @InjectView(R.id.bank_account_info_text_input_agency)
@@ -24,6 +27,8 @@ public class BankAccountInfoFragment extends NewSimulationFragment {
 
     @InjectView(R.id.bank_account_info_text_input_account)
     EditText editTextAccount;
+
+    boolean hasAccount;
 
     @Nullable
     @Override
@@ -41,8 +46,11 @@ public class BankAccountInfoFragment extends NewSimulationFragment {
 
             @Override
             public void onItemSelectedListener(BasicListable item, int selectedIndex) {
-                editTextAgency.setEnabled(selectedIndex == YES);
-                editTextAccount.setEnabled(selectedIndex == YES);
+
+                hasAccount = selectedIndex == YES;
+
+                editTextAgency.setEnabled(hasAccount);
+                editTextAccount.setEnabled(hasAccount);
             }
         });
 
@@ -63,7 +71,14 @@ public class BankAccountInfoFragment extends NewSimulationFragment {
     }
 
     @Override
-    public void populate(Simulation simulation) {
+    public void populateData(Simulation simulation) {
 
+        if (hasAccount) {
+            simulation.haveAnAccount();
+            simulation.setAgency(getAgency());
+            simulation.setAccountNumber(getAccount());
+        } else {
+            simulation.haveNoAccount();
+        }
     }
 }

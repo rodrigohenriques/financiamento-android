@@ -49,7 +49,7 @@
     <string name="default_loading_simulations_error_message">Ocorreu um erro durante o carregamento das informações da sua conta</string>
     <string name="simulation_empty_list">Nenhuma simulação encontrada. Clique no botão abaixo para iniciar.</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_us">Desenvolvido por Rodrigo Henriques e Guilherme Assis.</string>
     <string name="title_activity_new_simulation">Nova Simulação</string>
@@ -87,4 +87,18 @@
     <string name="new_simulation_load_data_failed">Ocorreu um erro durante a busca das informações no servidor. Tente novamente.</string>
     <string name="new_simulation_store_data_failed">Ocorreu um erro durante o processamento da sua simulação.</string>
     <string name="dialog_try_Again">TENTAR NOVAMENTE</string>
+    <string name="new_simulation_store_data_succeed">Nova simulação realizada com sucesso. Dentro de 3 dias você será notificado a respeito.</string>
+    <string name="invalid_cep">Cep inválido</string>
+    <string name="invalid_neighbourhood">Bairro inválido</string>
+    <string name="invalid_location">Logradouro inválido</string>
+    <string name="invalid_uf">UF inválida</string>
+    <string name="invalid_county">Município inválido</string>
+    <string name="invalid_property_type">Tipo do imvóvel não informado</string>
+    <string name="invalid_property_status">Condição do imóvel não informada</string>
+    <string name="invalid_price">Valor aproximado do imóvel não informado</string>
+    <string name="invalid_option">Selecione uma das opções</string>
+    <string name="invalid_financing_amount">Informe o valor a ser financiado</string>
+    <string name="invalid_financing_deadline">Informe o prazo desejado</string>
+    <string name="invalid_birthday">Data de nascimento inválida</string>
+    <string name="dialog_title_success">Atenção</string>
 </resources>

@@ -42,18 +42,6 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/property_info_text_input_cpf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_cpf"
-                    android:inputType="number" />
-            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
-
-            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
                     android:id="@+id/property_info_text_input_neighbourhood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,8 +69,6 @@
                     android:id="@+id/property_info_text_input_uf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="false"
                     android:hint="@string/hint_uf" />
             </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 

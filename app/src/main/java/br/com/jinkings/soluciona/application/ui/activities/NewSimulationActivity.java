@@ -3,15 +3,16 @@ package br.com.jinkings.soluciona.application.ui.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -22,8 +23,6 @@ import br.com.jinkings.soluciona.application.ui.fragment.BankAccountInfoFragment
 import br.com.jinkings.soluciona.application.ui.fragment.FinancingInfoFragment;
 import br.com.jinkings.soluciona.application.ui.fragment.NewSimulationFragment;
 import br.com.jinkings.soluciona.application.ui.fragment.PropertyInfoFragment;
-import br.com.jinkings.soluciona.domain.model.PropertyStatus;
-import br.com.jinkings.soluciona.domain.model.PropertyType;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -38,77 +37,19 @@ public class NewSimulationActivity extends MainActivity {
     private int fragmentIndex = 0;
     private ArrayList<NewSimulationFragment> fragments = new ArrayList<>();
 
-    private List<PropertyType> propertyTypes;
-    private List<PropertyStatus> propertyStatuses;
-
-    private Handler handler = new Handler();
-
-    private Simulation simulation;
+    private final Simulation simulation = new Simulation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        simulation = new Simulation();
-
         fragments.add(new PropertyInfoFragment());
         fragments.add(new FinancingInfoFragment());
         fragments.add(new BankAccountInfoFragment());
 
-        Fragment fragment = fragments.get(fragmentIndex);
-
-        showFragment(fragment);
-
         buttonPrevious.setVisibility(View.INVISIBLE);
 
-        loadData();
-    }
-
-    private void loadData() {
-
-        startProgress();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    ParseQuery<PropertyType> propertyTypeParseQuery = ParseQuery.getQuery(PropertyType.class);
-                    ParseQuery<PropertyStatus> propertyStatusParseQuery = ParseQuery.getQuery(PropertyStatus.class);
-
-                    propertyTypeParseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-                    propertyStatusParseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-
-                    propertyTypes = propertyTypeParseQuery.find();
-                    propertyStatuses = propertyStatusParseQuery.find();
-                } catch (ParseException e) {
-                    Log.e(NewSimulationActivity.class.getName(), e.getMessage(), e);
-
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(NewSimulationActivity.this);
-
-                            builder.setMessage(R.string.new_simulation_load_data_failed);
-                            builder.setPositiveButton(R.string.dialog_close_button, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
-                                }
-                            });
-
-                            builder.create().show();
-                        }
-                    });
-                } finally {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            finishProgress();
-                        }
-                    });
-                }
-            }
-        }).start();
+        showFragment(currentFragment());
     }
 
     @Override
@@ -120,57 +61,90 @@ public class NewSimulationActivity extends MainActivity {
     public void previous() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        fragmentTransaction.remove(fragments.get(fragmentIndex--));
+        fragmentTransaction.remove(currentFragment());
         fragmentTransaction.commit();
+
+        fragmentIndex--;
+
         updateButtons();
     }
 
     @OnClick(R.id.button_next)
     public void next() {
-        if (isLastFragment()) {
-            sendNewSimulation();
-        } else {
-            fragmentIndex++;
-            Fragment fragment = fragments.get(fragmentIndex);
-            showFragment(fragment);
-        }
+
+        final NewSimulationFragment currentFragment = currentFragment();
+
+        currentFragment.validate(new Validator.ValidationListener() {
+            @Override
+            public void onValidationSucceeded() {
+
+                currentFragment.populateData(simulation);
+
+                if (isLastFragment()) {
+                    sendNewSimulation();
+                } else {
+                    Fragment fragment = getNextFragment();
+                    showFragment(fragment);
+                }
+            }
+
+            @Override
+            public void onValidationFailed(List<ValidationError> errors) {
+                for (ValidationError v : errors) {
+                    EditText editText = (EditText) v.getView();
+                    editText.setError(v.getCollatedErrorMessage(NewSimulationActivity.this));
+                }
+
+                justSnackIt(R.string.invalid_form_message);
+            }
+        });
+    }
+
+    private NewSimulationFragment currentFragment() {
+        return fragments.get(fragmentIndex);
+    }
+
+    private NewSimulationFragment getNextFragment() {
+        return fragments.get(++fragmentIndex);
     }
 
     private void sendNewSimulation() {
+        startProgress();
 
+        simulation.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
 
+                finishProgress();
 
-        for (NewSimulationFragment fragment : fragments) {
-            fragment.populate(simulation);
-        }
+                AlertDialog.Builder builder = new AlertDialog.Builder(NewSimulationActivity.this);
 
-        if (simulation.validate()) {
-            simulation.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
+                if (e != null) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NewSimulationActivity.this);
+                    Log.e(NewSimulationActivity.class.getName(), e.getMessage(), e);
+                    builder.setTitle(e.getMessage());
+                    builder.setMessage(R.string.new_simulation_store_data_failed);
+                    builder.setNegativeButton(R.string.dialog_close_button, null);
+                    builder.setPositiveButton(R.string.dialog_try_Again, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            sendNewSimulation();
+                        }
+                    });
+                } else {
+                    builder.setTitle(R.string.dialog_title_success);
+                    builder.setMessage(R.string.new_simulation_store_data_succeed);
+                    builder.setPositiveButton(R.string.dialog_close_button, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+                }
 
-                    if (e != null) {
-
-                        builder.setMessage(R.string.new_simulation_store_data_failed);
-                        builder.setNegativeButton(R.string.dialog_close_button, null);
-                        builder.setPositiveButton(R.string.dialog_try_Again, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                sendNewSimulation();
-                            }
-                        });
-                    } else {
-
-                    }
-
-                    builder.create().show();
-                 }
-            });
-        } else {
-            justSnackIt(R.string.invalid_form_message);
-        }
+                builder.create().show();
+            }
+        });
     }
 
 
@@ -218,13 +192,5 @@ public class NewSimulationActivity extends MainActivity {
         });
         builder.setNegativeButton(R.string.dialog_negative_button, null);
         builder.create().show();
-    }
-
-    public List<PropertyType> getPropertyTypes() {
-        return propertyTypes;
-    }
-
-    public List<PropertyStatus> getPropertyStatuses() {
-        return propertyStatuses;
     }
 }

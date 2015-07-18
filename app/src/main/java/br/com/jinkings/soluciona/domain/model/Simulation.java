@@ -12,7 +12,7 @@ import com.parse.ParseUser;
 public class Simulation extends ParseObject {
 
     public Simulation() {
-
+        setUser(ParseUser.getCurrentUser());
     }
 
     public String getAgency() {
@@ -119,11 +119,11 @@ public class Simulation extends ParseObject {
         return getBoolean(SimulationFields.POSSUI_FINANCIAMENTO);
     }
 
-    public void haveFinancing(boolean haveFinancing) {
+    public void haveFinancing() {
         put(SimulationFields.POSSUI_FINANCIAMENTO, true);
     }
 
-    public void haveNoFinancing(boolean haveNoFinancing) {
+    public void haveNoFinancing() {
         put(SimulationFields.POSSUI_FINANCIAMENTO, false);
     }
 
@@ -183,7 +183,7 @@ public class Simulation extends ParseObject {
         return getParseUser(SimulationFields.USER);
     }
 
-    public void setUser(ParseUser parseUser) {
+    protected void setUser(ParseUser parseUser) {
         put(SimulationFields.USER, parseUser);
     }
 
@@ -213,10 +213,5 @@ public class Simulation extends ParseObject {
 
     public static ParseQuery<Simulation> getQuery() {
         return ParseQuery.getQuery(Simulation.class);
-    }
-
-    public boolean validate() {
-        // TODO implementar validação do dado
-        return true;
     }
 }
