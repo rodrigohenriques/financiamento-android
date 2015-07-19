@@ -1,6 +1,7 @@
 package br.com.jinkings.soluciona.application.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -46,7 +47,13 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
 
         final Simulation simulation = simulations.get(position);
 
-        int color = simulation.getStatus().getColor();
+        int color;
+
+        if (simulation.getStatus() != null) {
+            color = simulation.getStatus().getColor();
+        } else {
+            color = Color.parseColor("#607D8B");
+        }
 
         holder.textViewPriceAndDate.setText(simulation.getPriceAndDate());
         holder.textViewTypeAndLocation.setText(simulation.getTypeAndLocation());

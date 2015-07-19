@@ -1,9 +1,16 @@
 package br.com.jinkings.soluciona.domain.model;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by rodrigohenriques on7/4/15.
@@ -12,7 +19,36 @@ import com.parse.ParseUser;
 public class Simulation extends ParseObject {
 
     public Simulation() {
-        setUser(ParseUser.getCurrentUser());
+        //  THIS CONSTRUCTOR CANT CHANGE OBJECT DATA
+    }
+
+    public static Simulation newInstance() {
+        Simulation simulation = new Simulation();
+
+        simulation.setUser(ParseUser.getCurrentUser());
+        simulation.setDataEnvio(simulation.now());
+
+        try {
+            ParseQuery<SimulationStatus> query = ParseQuery.getQuery(SimulationStatus.class);
+            SimulationStatus defaultInitialStatus = query.get(SimulationStatus.DEFAULT_INITIAL_ID);
+            simulation.setStatus(defaultInitialStatus);
+        } catch (ParseException e) {
+            Log.e(Simulation.class.getName(), e.getMessage(), e);
+        }
+
+        return simulation;
+    }
+
+    public static ParseQuery<Simulation> getQuery() {
+        return ParseQuery.getQuery(Simulation.class);
+    }
+
+    private String now() {
+        Date now = new Date(System.currentTimeMillis());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+
+        return dateFormat.format(now);
     }
 
     public String getAgency() {
@@ -139,6 +175,10 @@ public class Simulation extends ParseObject {
         return (SimulationStatus) getParseObject(SimulationFields.STATUS);
     }
 
+    private void setStatus(String objectId) {
+        put(SimulationFields.STATUS, objectId);
+    }
+
     public String getStatusString() {
         return getStatus().getDescription();
     }
@@ -151,24 +191,24 @@ public class Simulation extends ParseObject {
         return (PropertyType) getParseObject(SimulationFields.TIPO_IMOVEL);
     }
 
-    public String getPropertyTypeString() {
-        return getPropertyType().getDescription();
-    }
-
     public void setPropertyType(PropertyType propertyType) {
         put(SimulationFields.TIPO_IMOVEL, propertyType);
     }
 
+    public String getPropertyTypeString() {
+        return getPropertyType().getDescription();
+    }
 
     public PropertyStatus getPropertyStatus() {
         return (PropertyStatus) getParseObject(SimulationFields.CONDICAO_IMOVEL);
     }
 
-    public String getPropertyStatusString() {
-        return getPropertyStatus().getDescription();
-    }
     public void setPropertyStatus(PropertyStatus propertyStatus) {
         put(SimulationFields.CONDICAO_IMOVEL, propertyStatus);
+    }
+
+    public String getPropertyStatusString() {
+        return getPropertyStatus().getDescription();
     }
 
     public String getUf() {
@@ -209,9 +249,5 @@ public class Simulation extends ParseObject {
 
     public String getTypeAndLocation() {
         return String.format("%s - %s", getPropertyTypeString(), getLocation());
-    }
-
-    public static ParseQuery<Simulation> getQuery() {
-        return ParseQuery.getQuery(Simulation.class);
     }
 }

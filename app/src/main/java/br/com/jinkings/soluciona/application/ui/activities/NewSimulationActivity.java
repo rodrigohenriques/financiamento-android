@@ -37,7 +37,7 @@ public class NewSimulationActivity extends MainActivity {
     private int fragmentIndex = 0;
     private ArrayList<NewSimulationFragment> fragments = new ArrayList<>();
 
-    private final Simulation simulation = new Simulation();
+    private final Simulation simulation = Simulation.newInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,8 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
                     int errorMsgId = R.string.default_loading_simulations_error_message;
 
                     justSnackIt(errorMsgId);
+
+                    Log.e(SimulationsFragment.class.getName(), e.getMessage(), e);
                 } else {
                     simulations = list;
 
