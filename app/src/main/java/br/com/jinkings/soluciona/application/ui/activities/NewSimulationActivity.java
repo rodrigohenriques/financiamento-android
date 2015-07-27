@@ -121,7 +121,7 @@ public class NewSimulationActivity extends MainActivity {
 
                 if (e != null) {
 
-                    Log.e(NewSimulationActivity.class.getName(), e.getMessage(), e);
+                    Log.e(logTag, e.getMessage(), e);
                     builder.setTitle(e.getMessage());
                     builder.setMessage(R.string.new_simulation_store_data_failed);
                     builder.setNegativeButton(R.string.dialog_close_button, null);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jinkings Soluciona</string>
+    <string name="app_name">Soluciona</string>
 
     <string name="title_activity_financing_list">FinancingListActivity</string>
     <string name="hint_email">Email</string>
@@ -45,7 +45,7 @@
     <string name="menu_outras_opcoes">Outras opções</string>
     <string name="title_help_activity">Ajuda</string>
     <string name="title_about_us_fragment">Sobre</string>
-    <string name="title_profile_activity">Perfil</string>
+    <string name="title_profile">Meu Perfil</string>
     <string name="default_loading_simulations_error_message">Ocorreu um erro durante o carregamento das informações da sua conta</string>
     <string name="simulation_empty_list">Nenhuma simulação encontrada. Clique no botão abaixo para iniciar.</string>
 
@@ -101,4 +101,9 @@
     <string name="invalid_financing_deadline">Informe o prazo desejado</string>
     <string name="invalid_birthday">Data de nascimento inválida</string>
     <string name="dialog_title_success">Atenção</string>
+    <string name="action_search_cep">LOCALIZAR</string>
+    <string name="search_cep_default_failure">Não foi possível completar as informações deste CEP</string>
+    <string name="profile_name">Nome</string>
+    <string name="profile_cellphone">Celular</string>
+    <string name="login_jinkings_info">A Soluciona crédito é meramente correspondente bancário do Banco do Brasil de acordo com a resolução 3954 do Banco Central do Brasil, com as funções de recepcionar e encaminhar propostas de operações de crédito.</string>
 </resources>

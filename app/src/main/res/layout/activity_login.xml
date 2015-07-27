@@ -2,87 +2,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:theme="@style/Login.Theme.Jinkings">
+    android:theme="@style/Login.Theme.Jinkings"
+    tools:context=".LoginActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:ignore="UselessParent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:src="@drawable/logo"
-            android:contentDescription="@string/content_logo"/>
-
-        <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
-            android:id="@+id/login_text_input_layout_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <EditText
-                android:id="@+id/login_text_input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress" />
-        </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
-
-        <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
-            android:id="@+id/login_text_input_layout_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp">
-
-            <EditText
-                android:id="@+id/login_text_input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword" />
-        </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
-
-        <Button
-            android:id="@+id/login_button_signin"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@drawable/btn_login_selector"
-            android:text="@string/login_button_singin"
-            android:textSize="14sp"
-            android:textColor="@color/primary"
-            android:layout_marginTop="24dp"/>
+        android:layout_centerInParent="true">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center">
-            <TextView
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="UselessParent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:contentDescription="@string/content_logo"
+                android:src="@drawable/logo" />
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:id="@+id/login_text_input_layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/login_text_input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                android:id="@+id/login_text_input_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+
+                <EditText
+                    android:id="@+id/login_text_input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword" />
+            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+            <Button
+                android:id="@+id/login_button_signin"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_login_selector"
+                android:text="@string/login_button_singin"
+                android:textColor="@color/primary"
+                android:textSize="14sp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/login_signup_message"
-                android:textColor="@color/primary_light" />
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/login_signup_message"
+                    android:textColor="@color/primary_light" />
+
+                <TextView
+                    android:id="@+id/login_textview_signup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/signup_text_selector"
+                    android:clickable="true"
+                    android:padding="4dp"
+                    android:text="@string/login_signup_link"
+                    android:textColor="@color/primary_text" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/login_textview_signup"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/login_signup_link"
-                android:textColor="@color/primary_text"
-                android:padding="4dp"
-                android:clickable="true"
-                android:background="@drawable/signup_text_selector"/>
+                android:layout_marginTop="@dimen/default_margin"
+                android:gravity="center"
+                android:text="@string/login_jinkings_info"
+                android:textSize="12sp" />
+
         </LinearLayout>
-
-    </LinearLayout>
-
+    </ScrollView>
 
 </RelativeLayout>

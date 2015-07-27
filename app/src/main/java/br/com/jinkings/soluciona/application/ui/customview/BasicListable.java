@@ -1,9 +1,7 @@
-package br.com.jinkings.soluciona.domain.model;
+package br.com.jinkings.soluciona.application.ui.customview;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.jinkings.soluciona.application.ui.customview.Listable;
 
 public class BasicListable implements Listable {
 

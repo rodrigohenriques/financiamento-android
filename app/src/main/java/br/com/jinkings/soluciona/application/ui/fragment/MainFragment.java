@@ -3,17 +3,17 @@ package br.com.jinkings.soluciona.application.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import br.com.jinkings.financing.R;
+import roboguice.fragment.RoboFragment;
 
 /**
  * Created by rodrigohenriques on 7/4/15.
  */
-public abstract class MainFragment extends Fragment {
+public abstract class MainFragment extends RoboFragment {
 
     private View viewComponentProgressBar;
 
@@ -50,5 +50,9 @@ public abstract class MainFragment extends Fragment {
         });
 
         snackbar.show();
+    }
+
+    protected String getLogTag() {
+        return getString(R.string.log_tag);
     }
 }

@@ -9,9 +9,14 @@
     <application
         android:name="br.com.jinkings.soluciona.application.JinkingsSoluciona"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="roboguice.modules"
+            android:value="br.com.jinkings.soluciona.infrastructure.backend.BackendModule" />
+
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.activities.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -10,14 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.LogOutCallback;
-import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.application.ui.fragment.AboutUsFragment;
+import br.com.jinkings.soluciona.application.ui.fragment.ProfileFragment;
 import br.com.jinkings.soluciona.application.ui.fragment.SimulationsFragment;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -69,7 +67,7 @@ public class HomeActivity extends MainActivity {
                         return true;
                     // For rest of the options we just show a toast on click
                     case R.id.nav_profile:
-                        Toast.makeText(getApplicationContext(), "Profile Selected", Toast.LENGTH_SHORT).show();
+                        openProfileFragment();
                         return true;
                     case R.id.nav_about_us:
                         openAboutUsFragment();
@@ -89,6 +87,11 @@ public class HomeActivity extends MainActivity {
         openSimulationsFragment();
     }
 
+    private void openProfileFragment() {
+        ProfileFragment profileFragment = new ProfileFragment();
+        openFragment(profileFragment, R.string.title_profile);
+    }
+
     private void openAboutUsFragment() {
         AboutUsFragment aboutUsFragment = AboutUsFragment.newInstance("", "");
         openFragment(aboutUsFragment, R.string.title_about_us_fragment);
@@ -100,7 +103,7 @@ public class HomeActivity extends MainActivity {
     }
 
     private void openFragment(Fragment fragment, int titleId) {
-        setTitle(R.string.title_simulations_fragment);
+        setTitle(titleId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.replace(R.id.home_frame, fragment);
@@ -131,22 +134,9 @@ public class HomeActivity extends MainActivity {
 
     @OnClick(R.id.nav_header_logout)
     public void logout() {
-        startProgress();
-
-        ParseUser.logOutInBackground(new LogOutCallback() {
-            @Override
-            public void done(ParseException e) {
-
-                if (e != null) {
-                    justSnackIt(R.string.logout_failed_default_message);
-                } else {
-                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                finishProgress();
-            }
-        });
+        ParseUser.logOut();
+        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -76,7 +76,7 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
 
                     justSnackIt(errorMsgId);
 
-                    Log.e(SimulationsFragment.class.getName(), e.getMessage(), e);
+                    Log.e(getLogTag(), e.getMessage(), e);
                 } else {
                     simulations = list;
 

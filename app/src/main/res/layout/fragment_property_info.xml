@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/screen_padding_default"
         android:text="@string/subtitle_property_info"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:layout_margin="@dimen/screen_padding_default"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,22 +21,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginLeft="@dimen/screen_padding_default"
-            android:layout_marginRight="@dimen/screen_padding_default">
+            android:layout_marginRight="@dimen/screen_padding_default"
+            android:orientation="vertical">
 
-            <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/property_info_text_input_cep"
+                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_cep"
-                    android:inputType="number"
-                    android:maxLength="8"/>
-            </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+                    android:layout_height="wrap_content">
+
+                    <ui.mine.maskedit.MaskedEditText
+                        android:id="@+id/property_info_text_input_cep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_cep"
+                        android:inputType="number"
+                        app:mask="#####-###" />
+                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+
+                <Button
+                    android:id="@+id/button_cep"
+                    style="@style/AppCompat.Button.Flat.Common"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_margin="0dp"
+                    android:textStyle="normal"
+                    android:text="@string/action_search_cep"/>
+            </FrameLayout>
 
             <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                 android:layout_width="match_parent"
@@ -108,14 +125,15 @@
 
             <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
 
                 <EditText
                     android:id="@+id/property_info_text_input_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_property_price"
-                    android:inputType="text" />
+                    android:inputType="numberDecimal" />
             </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
         </LinearLayout>
     </ScrollView>

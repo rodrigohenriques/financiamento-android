@@ -3,7 +3,6 @@ package br.com.jinkings.soluciona.application.ui.activities;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +10,9 @@ import android.view.ViewGroup;
 
 import br.com.jinkings.financing.R;
 import butterknife.ButterKnife;
+import roboguice.activity.RoboActionBarActivity;
 
-public abstract class MainActivity extends AppCompatActivity {
+public abstract class MainActivity extends RoboActionBarActivity {
 
     protected String logTag;
     protected ViewGroup rootView;

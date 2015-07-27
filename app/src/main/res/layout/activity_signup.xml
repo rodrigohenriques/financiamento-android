@@ -47,36 +47,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ui.mine.maskedit.MaskedEditText
                         android:id="@+id/signup_text_input_cpf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_cpf"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        app:mask="###.###.###-##" />
                 </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
                 <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ui.mine.maskedit.MaskedEditText
                         android:id="@+id/signup_text_input_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_phone"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        app:mask="(##) ####-####"/>
                 </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
                 <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <ui.mine.maskedit.MaskedEditText
                         android:id="@+id/signup_text_input_cellphone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_cellphone"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        app:mask="(##) #####-####" />
                 </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
                 <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout

@@ -6,12 +6,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.inject.Inject;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -24,23 +28,38 @@ import br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText
 import br.com.jinkings.soluciona.domain.model.PropertyStatus;
 import br.com.jinkings.soluciona.domain.model.PropertyType;
 import br.com.jinkings.soluciona.domain.model.Simulation;
+import br.com.jinkings.soluciona.infrastructure.backend.cep.CepResult;
+import br.com.jinkings.soluciona.infrastructure.backend.cep.CepService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import ui.mine.maskedit.CurrencyTextWatcher;
+import ui.mine.maskedit.Mask;
 
 public class PropertyInfoFragment extends NewSimulationFragment {
 
     @InjectView(R.id.property_info_text_input_cep)
     @NotEmpty(sequence = 1, messageResId = R.string.invalid_cep)
     EditText editTextCep;
+
+    @InjectView(R.id.button_cep)
+    Button buttonSearchCep;
+
     @InjectView(R.id.property_info_text_input_neighbourhood)
     @NotEmpty(sequence = 2, messageResId = R.string.invalid_neighbourhood)
     EditText editTextNeighbourhood;
+
     @InjectView(R.id.property_info_text_input_location)
     @NotEmpty(sequence = 3, messageResId = R.string.invalid_location)
     EditText editTextLocation;
+
     @InjectView(R.id.property_info_text_input_uf)
     @NotEmpty(sequence = 4, messageResId = R.string.invalid_uf)
     EditText editTextUF;
+
     @InjectView(R.id.property_info_text_input_county)
     @NotEmpty(sequence = 5, messageResId = R.string.invalid_county)
     EditText editTextCounty;
@@ -65,6 +84,9 @@ public class PropertyInfoFragment extends NewSimulationFragment {
     List<PropertyType> propertyTypes;
     List<PropertyStatus> propertyStatuses;
 
+    @Inject
+    CepService cepService;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,8 +96,12 @@ public class PropertyInfoFragment extends NewSimulationFragment {
 
         ButterKnife.inject(this, viewPropertyInfo);
 
+        editTextPropertyPrice.addTextChangedListener(new CurrencyTextWatcher(editTextPropertyPrice));
+        editTextCep.addTextChangedListener(getEnableSearchCepButtonWatcher());
+
         return viewPropertyInfo;
     }
+
 
     @Override
     public void onStart() {
@@ -99,6 +125,44 @@ public class PropertyInfoFragment extends NewSimulationFragment {
         simulation.setPropertyType(selectedPropertyType);
         simulation.setPropertyStatus(selectedPropertyStatus);
         simulation.setPropertyPrice(getPropertyPrice());
+    }
+
+    @OnClick(R.id.button_cep)
+    public void cepSearch() {
+        startProgress();
+
+        String cep = Mask.unmask(getCep());
+
+        cepService.find(cep, new Callback<CepResult>() {
+            @Override
+            public void success(CepResult cepResult, Response response) {
+
+                Log.i(getLogTag(), response.toString());
+
+                bind(cepResult);
+
+                finishProgress();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+                Log.e(getLogTag(), error.getMessage(), error);
+
+                bind(new CepResult());
+
+                justSnackIt(R.string.search_cep_default_failure);
+
+                finishProgress();
+            }
+
+            private void bind(CepResult cepResult) {
+                editTextNeighbourhood.setText(cepResult.neighbourhood);
+                editTextLocation.setText(cepResult.location);
+                editTextUF.setText(cepResult.uf);
+                editTextCounty.setText(cepResult.county);
+            }
+        });
     }
 
     @NonNull
@@ -131,6 +195,26 @@ public class PropertyInfoFragment extends NewSimulationFragment {
         return editTextCep.getText().toString();
     }
 
+    @NonNull
+    private TextWatcher getEnableSearchCepButtonWatcher() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                buttonSearchCep.setEnabled(s.length() >= 7);
+            }
+        };
+    }
+
     private class ParseDataLoader extends AsyncTask<Void, Void, ParseDataLoader.Result> {
 
         class Result {
@@ -160,7 +244,7 @@ public class PropertyInfoFragment extends NewSimulationFragment {
                 result.succeed = true;
             } catch (ParseException e) {
 
-                Log.e(NewSimulationActivity.class.getName(), e.getMessage(), e);
+                Log.e(getLogTag(), e.getMessage(), e);
 
                 result.parseException = e;
                 result.succeed = false;

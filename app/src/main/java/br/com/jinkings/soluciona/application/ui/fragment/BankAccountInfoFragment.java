@@ -11,7 +11,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.application.ui.customview.ClickToSelectEditText;
-import br.com.jinkings.soluciona.domain.model.BasicListable;
+import br.com.jinkings.soluciona.application.ui.customview.BasicListable;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
