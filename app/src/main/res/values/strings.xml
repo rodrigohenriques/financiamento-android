@@ -112,6 +112,10 @@
     <string name="subtitle_document_list">Selecione um documento abaixo e escolha a opção desejada</string>
     <string name="default_loading_documents_error_message">Não foi possível carregar a lista de documentos</string>
     <string name="document_category_empty_list">Nenhum documento encontrado para sua categoria profissional. Entre em contato com nossa central de operações.</string>
-    <string name="select_one_option">Selecione uma opção</string>
+    <string name="dialog_title_select">Selecione</string>
     <string name="title_activity_captured_image">CapturedImageActivity</string>
+    <string name="user_canceled_image_capture_message">Captura de imagem cancelada</string>
+    <string name="image_capture_error">Não foi possível capturar a imagem</string>
+    <string name="document_updated_success_message">Documentação atualizada com sucesso</string>
+    <string name="no_document_available_message">Você ainda não informou este documento</string>
 </resources>

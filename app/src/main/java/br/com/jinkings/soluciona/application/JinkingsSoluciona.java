@@ -5,6 +5,7 @@ import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import br.com.jinkings.soluciona.domain.model.Document;
 import br.com.jinkings.soluciona.domain.model.DocumentCategory;
 import br.com.jinkings.soluciona.domain.model.JobCategory;
 import br.com.jinkings.soluciona.domain.model.PropertyStatus;
@@ -30,6 +31,7 @@ public class JinkingsSoluciona extends Application {
         ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(JobCategory.class);
         ParseObject.registerSubclass(DocumentCategory.class);
+        ParseObject.registerSubclass(Document.class);
 
         Parse.initialize(this, "tcPa2fsP1bULHFjD6ZG0qHxmAILBYku4TosH8uX2", "jXAtMw4hIthlWgjlL9LasZQ03UJv4igOw2bHPH3R");
     }

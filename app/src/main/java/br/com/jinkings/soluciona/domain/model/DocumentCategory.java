@@ -38,7 +38,7 @@ public class DocumentCategory extends ParseObject implements Serializable {
         return ParseQuery.getQuery(DocumentCategory.class);
     }
 
-    public String getFileName(Simulation simulation) {
-        return String.format("%s_%s", simulation.getObjectId(), getObjectId());
+    public String getFileName(String simulationId) {
+        return String.format("%s_%s.jpg", simulationId, getObjectId());
     }
 }

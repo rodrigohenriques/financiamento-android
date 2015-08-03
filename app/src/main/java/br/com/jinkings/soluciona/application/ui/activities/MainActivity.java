@@ -29,7 +29,6 @@ public abstract class MainActivity extends RoboActionBarActivity {
 
         logTag = getString(R.string.log_tag);
 
-        rootView = (ViewGroup) getWindow().getDecorView().getRootView();
         viewComponentProgressBar = getLayoutInflater().inflate(R.layout.component_progressbar, null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -55,7 +54,13 @@ public abstract class MainActivity extends RoboActionBarActivity {
         Log.e(logTag, e.getMessage(), e);
     }
 
+    public void startProgress(ViewGroup container) {
+        rootView = container;
+        rootView.addView(viewComponentProgressBar);
+    }
+
     public void startProgress() {
+        rootView = (ViewGroup) getWindow().getDecorView().getRootView();
         rootView.addView(viewComponentProgressBar);
     }
 

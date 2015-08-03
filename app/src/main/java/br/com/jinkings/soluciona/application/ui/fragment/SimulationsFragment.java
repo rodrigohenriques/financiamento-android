@@ -14,6 +14,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.List;
 
@@ -98,11 +99,16 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
     }
 
     @Override
-    public void onItemClick(Simulation simulation) {
+    public void onItemClick(final Simulation simulation) {
         if (simulation.waitingForDocumentation()) {
-            Intent intent = new Intent(getActivity(), DocumentListActivity.class);
-            intent.putExtra(DocumentListExtras.EXTRA_SIMULATION_SELECTED, simulation);
-            startActivity(intent);
+            simulation.pinInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Intent intent = new Intent(getActivity(), DocumentListActivity.class);
+                    intent.putExtra(DocumentListExtras.EXTRA_SIMULATION_SELECTED, simulation.getObjectId());
+                    startActivity(intent);
+                }
+            });
         }
     }
 

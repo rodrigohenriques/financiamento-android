@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.jinkings.financing" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="br.com.jinkings.soluciona.application.JinkingsSoluciona"
@@ -59,18 +58,11 @@
         <activity
             android:name="br.com.jinkings.soluciona.application.ui.activities.DocumentListActivity"
             android:label="@string/title_activity_document_list"
-            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" >
+            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.HomeActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.jinkings.soluciona.application.ui.activities.HomeActivity" />
-        </activity>
-        <activity
-            android:name="br.com.jinkings.soluciona.application.ui.activities.CapturedImageActivity"
-            android:label="@string/title_activity_captured_image"
-            android:parentActivityName="br.com.jinkings.soluciona.application.ui.activities.DocumentListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.jinkings.soluciona.application.ui.activities.DocumentListActivity" />
         </activity>
     </application>
 
