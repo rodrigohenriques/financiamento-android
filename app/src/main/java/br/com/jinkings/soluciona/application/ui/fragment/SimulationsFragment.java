@@ -3,6 +3,7 @@ package br.com.jinkings.soluciona.application.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,13 +31,14 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-/**
- * Created by rodrigohenriques on 7/4/15.
- */
 public class SimulationsFragment extends MainFragment implements SimulationRecyclerViewAdapter.OnItemClickListener {
 
     @InjectView(R.id.simulation_textview_empty_list)
     View emptyList;
+
+    @InjectView(R.id.simulation_swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @InjectView(R.id.simulation_recyclerview)
     RecyclerView recyclerView;
 
@@ -53,6 +55,14 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadData();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         return rootView;
     }
 
@@ -65,6 +75,10 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
     public void onStart() {
         super.onStart();
 
+        loadData();
+    }
+
+    private void loadData() {
         startProgress();
 
         ParseQuery<Simulation> query = Simulation.getQuery();

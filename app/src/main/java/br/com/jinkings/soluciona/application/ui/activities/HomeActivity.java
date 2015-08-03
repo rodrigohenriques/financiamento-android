@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.application.ui.fragment.AboutUsFragment;
 import br.com.jinkings.soluciona.application.ui.fragment.ProfileFragment;
@@ -21,6 +24,10 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class HomeActivity extends MainActivity {
+    private final int SIMULATION_FRAGMENT_INDEX = 0;
+    private final int PROFILE_FRAGMENT_INDEX = 1;
+    private final int ABOUT_US_FRAGMENT_INDEX = 2;
+
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
@@ -30,7 +37,11 @@ public class HomeActivity extends MainActivity {
     @InjectView(R.id.home_nav_view)
     NavigationView navigationView;
 
+    List<Fragment> fragments;
+
     ParseUser user;
+
+    int selectedIndex;
 
     @Override
     protected int getContentView() {
@@ -83,30 +94,34 @@ public class HomeActivity extends MainActivity {
 
         textViewNavHeaderUsername.setText(username);
 
+        fragments = new ArrayList<>(3);
+
+        fragments.add(SIMULATION_FRAGMENT_INDEX, new SimulationsFragment());
+        fragments.add(PROFILE_FRAGMENT_INDEX, new ProfileFragment());
+        fragments.add(ABOUT_US_FRAGMENT_INDEX, new AboutUsFragment());
+
         openSimulationsFragment();
     }
 
     private void openProfileFragment() {
-        ProfileFragment profileFragment = new ProfileFragment();
-        openFragment(profileFragment, R.string.title_profile);
+        openFragment(PROFILE_FRAGMENT_INDEX, R.string.title_profile);
     }
 
     private void openAboutUsFragment() {
-        AboutUsFragment aboutUsFragment = AboutUsFragment.newInstance("", "");
-        openFragment(aboutUsFragment, R.string.title_about_us_fragment);
+        openFragment(ABOUT_US_FRAGMENT_INDEX, R.string.title_about_us_fragment);
     }
 
     private void openSimulationsFragment() {
-        SimulationsFragment simulationsFragment = new SimulationsFragment();
-        openFragment(simulationsFragment, R.string.title_simulations_fragment);
+        openFragment(SIMULATION_FRAGMENT_INDEX, R.string.title_simulations_fragment);
     }
 
-    private void openFragment(Fragment fragment, int titleId) {
+    private void openFragment(int index, int titleId) {
         setTitle(titleId);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        fragmentTransaction.replace(R.id.home_frame, fragment);
+        fragmentTransaction.replace(R.id.home_frame, fragments.get(index));
         fragmentTransaction.commit();
+        selectedIndex = index;
     }
 
     @Override
@@ -125,5 +140,14 @@ public class HomeActivity extends MainActivity {
         Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (selectedIndex != SIMULATION_FRAGMENT_INDEX) {
+            openSimulationsFragment();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

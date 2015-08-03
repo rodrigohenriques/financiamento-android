@@ -95,6 +95,13 @@
                 android:text="@string/login_jinkings_info"
                 android:textSize="12sp" />
 
+            <TextView
+                android:id="@+id/login_textview_version_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:gravity="center" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -3,6 +3,7 @@ package br.com.jinkings.soluciona.application.ui.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -14,6 +15,7 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
+import br.com.jinkings.financing.BuildConfig;
 import br.com.jinkings.financing.R;
 import br.com.m4u.commons.brazilian.library.validator.BrazilianValidator;
 import butterknife.InjectView;
@@ -30,6 +32,9 @@ public class LoginActivity extends MainActivity implements Validator.ValidationL
     @Password(sequence = 2, messageResId = R.string.invalid_password)
     EditText editTextPassword;
 
+    @InjectView(R.id.login_textview_version_name)
+    TextView textViewVersionName;
+
     BrazilianValidator validator;
 
     @Override
@@ -40,6 +45,8 @@ public class LoginActivity extends MainActivity implements Validator.ValidationL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        textViewVersionName.setText(BuildConfig.VERSION_NAME);
 
         validator = new BrazilianValidator(this);
         validator.setValidationListener(this);
