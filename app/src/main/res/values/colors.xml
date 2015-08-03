@@ -19,5 +19,6 @@
     <color name="flat_normal_text">@color/secondary_text</color>
 
     <color name="status_unavailable">#607D8B</color>
+    <color name="translucent_black">#000000</color>
 
 </resources>

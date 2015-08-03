@@ -4,4 +4,10 @@
         <item>Sim</item>
         <item>Não</item>
     </string-array>
+
+    <string-array name="document_options">
+        <item>Visualizar Documento</item>
+        <item>Apagar Documento</item>
+        <item>Capturar Imagem</item>
+    </string-array>
 </resources>

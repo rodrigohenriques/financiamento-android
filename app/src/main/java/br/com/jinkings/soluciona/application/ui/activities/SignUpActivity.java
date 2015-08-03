@@ -125,6 +125,7 @@ public class SignUpActivity extends MainActivity implements Validator.Validation
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
 
+                    builder.setCancelable(false);
                     builder.setMessage(R.string.signup_success);
                     builder.setPositiveButton(R.string.dialog_close_button, new DialogInterface.OnClickListener() {
                         @Override

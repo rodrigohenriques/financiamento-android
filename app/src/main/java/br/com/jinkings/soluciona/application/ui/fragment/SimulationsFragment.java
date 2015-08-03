@@ -18,8 +18,10 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import br.com.jinkings.financing.R;
+import br.com.jinkings.soluciona.application.ui.activities.DocumentListActivity;
 import br.com.jinkings.soluciona.application.ui.activities.NewSimulationActivity;
 import br.com.jinkings.soluciona.application.ui.adapter.SimulationRecyclerViewAdapter;
+import br.com.jinkings.soluciona.application.ui.extras.DocumentListExtras;
 import br.com.jinkings.soluciona.application.ui.recyclerview.DividerItemDecoration;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 import br.com.jinkings.soluciona.domain.model.SimulationFields;
@@ -97,7 +99,11 @@ public class SimulationsFragment extends MainFragment implements SimulationRecyc
 
     @Override
     public void onItemClick(Simulation simulation) {
-        justSnackIt(simulation.getPriceAndDate());
+        if (simulation.waitingForDocumentation()) {
+            Intent intent = new Intent(getActivity(), DocumentListActivity.class);
+            intent.putExtra(DocumentListExtras.EXTRA_SIMULATION_SELECTED, simulation);
+            startActivity(intent);
+        }
     }
 
     @OnClick(R.id.simulation_button_new)

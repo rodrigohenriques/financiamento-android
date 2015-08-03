@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import br.com.jinkings.financing.R;
@@ -51,6 +52,10 @@ public class BankAccountInfoFragment extends NewSimulationFragment {
 
                 editTextAgency.setEnabled(hasAccount);
                 editTextAccount.setEnabled(hasAccount);
+
+                clickToSelectEditTextHasAccount.setError(null);
+                editTextAgency.setError(null);
+                editTextAccount.setError(null);
             }
         });
 
@@ -80,5 +85,30 @@ public class BankAccountInfoFragment extends NewSimulationFragment {
         } else {
             simulation.haveNoAccount();
         }
+    }
+
+    @Override
+    public void validate(Validator.ValidationListener listener) {
+
+        if (hasAccount) {
+
+            boolean incompleteForm = false;
+
+            if (getAgency().length() == 0) {
+                editTextAgency.setError(getString(R.string.invalid_agency));
+                incompleteForm = true;
+            }
+
+            if (getAccount().length() == 0) {
+                editTextAccount.setError(getString(R.string.invalid_account));
+                incompleteForm = true;
+            }
+
+            if (incompleteForm) {
+                return;
+            }
+        }
+
+        super.validate(listener);
     }
 }

@@ -47,8 +47,7 @@ public class HomeActivity extends MainActivity {
 
         rootView = (ViewGroup) findViewById(R.id.home_frame);
 
-        setupDrawerContent(navigationView);
-
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -118,18 +117,6 @@ public class HomeActivity extends MainActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        drawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
     }
 
     @OnClick(R.id.nav_header_logout)

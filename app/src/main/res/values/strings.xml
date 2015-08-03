@@ -106,4 +106,12 @@
     <string name="profile_name">Nome</string>
     <string name="profile_cellphone">Celular</string>
     <string name="login_jinkings_info">A Soluciona crédito é meramente correspondente bancário do Banco do Brasil de acordo com a resolução 3954 do Banco Central do Brasil, com as funções de recepcionar e encaminhar propostas de operações de crédito.</string>
+    <string name="invalid_account">Informe sua conta</string>
+    <string name="invalid_agency">Informe sua agência</string>
+    <string name="title_activity_document_list">Documentos</string>
+    <string name="subtitle_document_list">Selecione um documento abaixo e escolha a opção desejada</string>
+    <string name="default_loading_documents_error_message">Não foi possível carregar a lista de documentos</string>
+    <string name="document_category_empty_list">Nenhum documento encontrado para sua categoria profissional. Entre em contato com nossa central de operações.</string>
+    <string name="select_one_option">Selecione uma opção</string>
+    <string name="title_activity_captured_image">CapturedImageActivity</string>
 </resources>

@@ -8,6 +8,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -16,7 +17,7 @@ import java.util.Locale;
  * Created by rodrigohenriques on7/4/15.
  */
 @ParseClassName("Simulacao")
-public class Simulation extends ParseObject {
+public class Simulation extends ParseObject implements Serializable {
 
     public Simulation() {
         //  THIS CONSTRUCTOR CANT CHANGE OBJECT DATA
@@ -232,6 +233,7 @@ public class Simulation extends ParseObject {
     }
 
     public void setFinancingAmount(String valorFinanciamento) {
+        valorFinanciamento = valorFinanciamento.replace("R$", "");
         put(SimulationFields.VALOR_FINANCIAMENTO, valorFinanciamento);
     }
 
@@ -240,14 +242,22 @@ public class Simulation extends ParseObject {
     }
 
     public void setPropertyPrice(String propertyPrice) {
+        propertyPrice = propertyPrice.replace("R$", "");
         put(SimulationFields.VALOR_IMOVEL, propertyPrice);
     }
 
     public String getPriceAndDate() {
-        return String.format("R$ %s - %s", getPropertyPrice(), getDataEnvio());
+        return String.format("R$ %s - %s", getFinancingAmount(), getDataEnvio());
     }
 
     public String getTypeAndLocation() {
         return String.format("%s - %s", getPropertyTypeString(), getLocation());
+    }
+
+    public boolean waitingForDocumentation() {
+
+        SimulationStatus status = getStatus();
+
+        return status.getObjectId().equals(SimulationStatus.WAITING_FOR_DOCUMENTATION_ID);
     }
 }

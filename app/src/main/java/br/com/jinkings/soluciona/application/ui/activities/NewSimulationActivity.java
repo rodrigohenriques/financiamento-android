@@ -142,6 +142,11 @@ public class NewSimulationActivity extends MainActivity {
                     });
                 }
 
+                builder.setCancelable(false);
+
+                //AlertDialog dialog = builder.create();
+                //dialog.setCanceledOnTouchOutside(false);
+
                 builder.create().show();
             }
         });

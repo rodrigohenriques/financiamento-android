@@ -11,6 +11,7 @@ import com.parse.ParseObject;
 public class SimulationStatus extends ParseObject {
 
     public static final String DEFAULT_INITIAL_ID = "KMok5LBiIC";
+    public static final String WAITING_FOR_DOCUMENTATION_ID = "OlkDklBkfV";
 
     public String getDescription() {
 

@@ -82,7 +82,7 @@
                         app:mask="(##) #####-####" />
                 </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
 
-                <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -91,7 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_job_category" />
-                </br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout>
+                </android.support.design.widget.TextInputLayout>
 
                 <br.com.jinkings.soluciona.application.ui.customview.CustomTextInputLayout
                     android:layout_width="match_parent"

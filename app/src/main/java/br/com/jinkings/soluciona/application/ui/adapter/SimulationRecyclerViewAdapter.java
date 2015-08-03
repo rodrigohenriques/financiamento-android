@@ -14,9 +14,6 @@ import java.util.List;
 import br.com.jinkings.financing.R;
 import br.com.jinkings.soluciona.domain.model.Simulation;
 
-/**
- * Created by rodrigohenriques on 7/4/15.
- */
 public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<SimulationRecyclerViewAdapter.ViewHolder> {
 
     TypedValue typedValue = new TypedValue();
@@ -33,7 +30,7 @@ public class SimulationRecyclerViewAdapter extends RecyclerView.Adapter<Simulati
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.simulation_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_simulation, parent, false);
         view.setBackgroundResource(typedValue.resourceId);
         return new ViewHolder(view);
     }
